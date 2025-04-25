@@ -1,0 +1,70 @@
+<div class="container mt-5">
+    <div class="row justif y-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="text-center">Datos del usuario</h3>
+          </div>
+          <div class="card-body">
+              <form [formGroup]="buyTicketsForm">
+                  <div class="form-group my-2">
+                      <label for="eventName">Nombre del usuario</label>
+                      <input type="text" class="form-control" id="eventName" formControlName="eventName" placeholder="Ingrese el nombre del evento">
+                      @if (buyTicketsForm.get('eventName')?.invalid && (buyTicketsForm.get('eventName')?.dirty || buyTicketsForm.get('eventName')?.touched)) {
+                          <div class="text-danger">
+                              el nombre del usuario es requerido
+                          </div>
+                      }
+                  </div>
+                  <div class="form-group my-2">
+                      <label for="pay">Metodo de pago</label>
+                      <select name="" id="pay" class="form-control" formControlName="paymentMethod">
+                          <option value="">Seleccione un metodo de pago</option>
+                          <option value="creditCard">Tarjeta de credito</option>
+                          <option value="debitCard">Tarjeta de debito</option>
+                          <option value="payPal">PayPal</option>
+                      </select>
+                      @if (buyTicketsForm.get('paymentMethod')?.invalid && buyTicketsForm.get('paymentMethod')?.dirty || buyTicketsForm.get('paymentMethod')?.touched) {
+                          <div>
+                              @if (buyTicketsForm.get('paymentMethod')?.errors?.['required']) {
+                                  <div class="text-danger">
+                                      el metodo de pago es requerido
+                                  </div>
+                              }
+                          </div>
+                      }
+                  </div>
+                  <div class="form-group my-2">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control" id="email" formControlName="email" placeholder="ingrese su email">
+                      @if (buyTicketsForm.get('email')?.invalid && buyTicketsForm.get('email')?.dirty || buyTicketsForm.get('email')?.touched ) {
+                          <div class="text-danger">
+                              @if (buyTicketsForm.get('email')?.errors?.['required']) {
+                                      el email es requerido
+                              }@else {
+                               @if (buyTicketsForm.get('email')?.errors?.['email']) {
+                                  ingrese un email valido
+                              }
+                              }
+                          </div>
+                      }
+                  </div>
+                  <div class="form-group form-check my-2">
+                      <input type="checkbox" class="form-check-input" id="agreeTerms" formControlName="agreeTerms">
+                      <label class="form-check-label" for="agreeTerms" >Acepto os terminos y condiciones</label>
+                      @if (buyTicketsForm.get('agreeTerms')?.invalid && buyTicketsForm.get('agreeTerms')?.dirty || buyTicketsForm.get('agreeTerms')?.touched ) {
+                          <div class="text-danger">
+                              @if (buyTicketsForm.get('agreeTerms')?.errors?.['required']) {
+                                  Debes aceptar los terminos y condiciones
+                          }
+                          </div>
+                      }
+                  </div>
+                  <button class="btn btn-primary btn-block" [disabled]="buyTicketsForm.invalid">Subir datos </button>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

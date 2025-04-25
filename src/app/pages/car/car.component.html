@@ -1,0 +1,20 @@
+<div class="container">
+    <h1 style="text-align: center;">mis favoritos</h1>
+    <div class="books-container">
+       @for(item of datosCar; track $index ){
+       <div class="book-card">
+          <img [src]="item.img" [alt]="item.title" />
+          <div class="card-content">
+             <p class="title">{{ item.title }}</p>
+             <p class="description">{{ item.description }}</p>
+             <p> {{item.price | currency}} </p>
+          </div>
+       </div>
+       }
+    </div>
+     @if( datosCar.length== 0){
+    <div class="not-found">NO se encontraron resultados con la busqueda</div>
+    }
+ </div>
+ <a routerLinkActive="router-link-active" class="btn btn-primary">Confirmar compra</a>
+ 

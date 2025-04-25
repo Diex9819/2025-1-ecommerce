@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="books-container">
+       @for(item of movie; track $index ){
+       <div class="book-card">
+          <img [src]="item.img" [alt]="item.title" />
+          <div class="card-content">
+             <p class="title">{{ item.title }}</p>
+             <p class="">Calificacion: {{item.rate}} </p>
+             <p class="">precio: {{item.price | currency}} </p>
+             <p></p>
+                {{ item.description }}
+                    <a routerLinkActive="router-link-active" class="btn btn-primary" (click)="addToCar(item._id)">Comprar</a>           
+          </div>
+       </div>
+       }
+    </div>
+ 
+    @if( movie.length== 0){
+    <div class="not-found">NO se encontraron resultados con la busqueda</div>
+ 
+    }
+ </div>
